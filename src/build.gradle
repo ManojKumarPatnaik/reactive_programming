@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id "io.freefair.lombok" version "5.3.0"
+
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+
+}
+
+dependencies {
+    implementation("io.projectreactor:reactor-core:3.4.0")
+
+    //webclient-dependencies
+    implementation 'org.springframework:spring-webflux:5.3.4'
+    implementation 'io.projectreactor.netty:reactor-netty:1.0.4'
+    //jackson dependencies
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.11.1'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.11.1'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.11.1'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.11.1'
+
+
+    //log - logback
+    implementation("ch.qos.logback:logback-classic:1.2.3")
+
+    //reactor-debug-agent
+    implementation('io.projectreactor:reactor-tools:3.4.0')
+
+
+    //testing
+    testImplementation('org.junit.jupiter:junit-jupiter:5.5.1')
+    testImplementation("io.projectreactor:reactor-test:3.4.0")
+    testImplementation("org.mockito:mockito-core:3.2.4")
+    testImplementation("org.mockito:mockito-junit-jupiter:3.2.4")
+
+    //wiremock
+    testImplementation "com.github.tomakehurst:wiremock-jre8-standalone:2.24.1"
+    implementation "com.github.JensPiegsa:wiremock-extension:0.4.0"
+
+}
+
+test {
+    useJUnitPlatform()
+    exclude 'com/learnreactiveprogramming/ColdAndHotPublisherTest.class'
+}
